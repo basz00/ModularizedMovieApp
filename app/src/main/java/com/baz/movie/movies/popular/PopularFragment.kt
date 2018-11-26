@@ -1,4 +1,4 @@
-package com.baz.movie.upcoming
+package com.baz.movie.movies.popular
 
 
 import android.os.Bundle
@@ -9,10 +9,10 @@ import android.view.ViewGroup
 
 import com.baz.movie.R
 
-internal class UpcomingFragment : Fragment() {
+internal class PopularFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_upcoming, container, false)
+        return inflater.inflate(R.layout.fragment_popular, container, false)
     }
 }

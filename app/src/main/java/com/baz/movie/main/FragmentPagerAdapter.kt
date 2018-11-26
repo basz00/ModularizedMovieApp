@@ -4,14 +4,16 @@ import android.content.Context
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.baz.movie.R
-import com.baz.movie.nowplaying.NowPlayingFragment
-import com.baz.movie.popular.PopularFragment
-import com.baz.movie.upcoming.UpcomingFragment
+import com.baz.movie.movies.nowplaying.NowPlayingFragment
+import com.baz.movie.movies.popular.PopularFragment
+import com.baz.movie.movies.upcoming.UpcomingFragment
 
 internal class FragmentPagerAdapter(private val context: Context, manager: FragmentManager) : FragmentPagerAdapter(manager) {
 
-    private val fragments = listOf(NowPlayingFragment(), UpcomingFragment(), PopularFragment())
-    private val titleResources = listOf(R.string.nowPlaying, R.string.upcoming, R.string.popular)
+//    private val fragments = listOf(NowPlayingFragment(), UpcomingFragment(), PopularFragment())
+//    private val titleResources = listOf(R.string.nowPlaying, R.string.upcoming, R.string.popular)
+private val fragments = listOf(NowPlayingFragment())
+    private val titleResources = listOf(R.string.nowPlaying)
 
     override fun getItem(position: Int) = fragments[position]
 

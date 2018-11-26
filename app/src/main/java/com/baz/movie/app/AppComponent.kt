@@ -1,6 +1,7 @@
 package com.baz.movie.app
 
 import com.baz.movie.main.MainBuilderModule
+import com.baz.movie.movies.nowplaying.module.NowPlayingBuilderModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
@@ -11,7 +12,10 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class,
-    MainBuilderModule::class])
+    AppModule::class,
+    ViewModelBuilderModule::class,
+    MainBuilderModule::class,
+    NowPlayingBuilderModule::class])
 internal interface AppComponent : AndroidInjector<Application> {
 
     @Component.Builder
