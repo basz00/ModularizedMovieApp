@@ -5,5 +5,5 @@ import com.baz.movie.movies.data.MovieResult
 
 internal interface NowPlayingRepository {
 
-    fun getNowPlayingMovies(): LiveData<MovieResult>
+    fun getNowPlayingMovies(page: Int): LiveData<MovieResult>
 }

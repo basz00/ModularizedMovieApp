@@ -1,5 +1,6 @@
 package com.baz.movie.movies.nowplaying.adapter
 
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -11,6 +12,8 @@ import com.baz.movie.R
 import com.baz.movie.extensions.inflate
 import com.baz.movie.movies.data.Movie
 import com.baz.movie.movies.nowplaying.adapter.NowPlayingAdapter.ViewHolder
+import com.baz.movie.util.ImageLoader
+import com.baz.movie.util.ImageUrlHelper
 
 internal class NowPlayingAdapter : ListAdapter<Movie, ViewHolder>(Diff()) {
 
@@ -27,6 +30,10 @@ internal class NowPlayingAdapter : ListAdapter<Movie, ViewHolder>(Diff()) {
         private val movieNameTextView = view.findViewById<TextView>(R.id.movieNameTextView)
 
         fun bind(movie: Movie) {
+            movie.posterPath?.let {
+                val posterPath = ImageUrlHelper().generatePosterImageUrl(it)
+                ImageLoader().loadImage(moviePosterImageView, posterPath)
+            }
             movieNameTextView.text = movie.title
         }
     }
