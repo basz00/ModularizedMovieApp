@@ -1,7 +1,6 @@
 package com.baz.movie.movies.nowplaying
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import com.baz.movie.extensions.getViewModel
 import com.baz.movie.extensions.observe
 import com.baz.movie.movies.data.Movie
 import com.baz.movie.movies.data.MovieResult
-import com.baz.movie.movies.nowplaying.adapter.NowPlayingAdapter
+import com.baz.movie.movies.adapter.MoviesAdapter
 import kotlinx.android.synthetic.main.fragment_now_playing.*
 import javax.inject.Inject
 
@@ -25,7 +24,7 @@ internal class NowPlayingFragment : BaseFragment() {
     @Inject
     internal lateinit var factory: ViewModelProvider.Factory
 
-    private val adapter by lazy(NONE) { NowPlayingAdapter() }
+    private val adapter by lazy(NONE) { MoviesAdapter() }
     private val viewModel by lazy(NONE) { getViewModel<NowPlayingViewModel>(factory) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -45,8 +44,8 @@ internal class NowPlayingFragment : BaseFragment() {
         viewModel.movieResultLiveData.observe(this) {
             when (it) {
                 is MovieResult.Success -> retrieveMovies(it.movies)
-                is MovieResult.Progress -> ""
-                is MovieResult.Failed -> ""
+                is MovieResult.Progress -> nowPlayingSwipeRefreshLayout.isRefreshing = it.loading
+                is MovieResult.Failed -> showToast(it.error)
             }
         }
     }

@@ -1,6 +1,5 @@
-package com.baz.movie.movies.nowplaying.adapter
+package com.baz.movie.movies.adapter
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -11,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baz.movie.R
 import com.baz.movie.extensions.inflate
 import com.baz.movie.movies.data.Movie
-import com.baz.movie.movies.nowplaying.adapter.NowPlayingAdapter.ViewHolder
+import com.baz.movie.movies.adapter.MoviesAdapter.ViewHolder
 import com.baz.movie.util.ImageLoader
 import com.baz.movie.util.ImageUrlHelper
 
-internal class NowPlayingAdapter : ListAdapter<Movie, ViewHolder>(Diff()) {
+internal class MoviesAdapter : ListAdapter<Movie, ViewHolder>(Diff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.inflate(R.layout.movie_item_grid))

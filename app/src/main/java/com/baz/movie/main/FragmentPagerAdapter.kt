@@ -10,10 +10,8 @@ import com.baz.movie.movies.upcoming.UpcomingFragment
 
 internal class FragmentPagerAdapter(private val context: Context, manager: FragmentManager) : FragmentPagerAdapter(manager) {
 
-//    private val fragments = listOf(NowPlayingFragment(), UpcomingFragment(), PopularFragment())
-//    private val titleResources = listOf(R.string.nowPlaying, R.string.upcoming, R.string.popular)
-private val fragments = listOf(NowPlayingFragment())
-    private val titleResources = listOf(R.string.nowPlaying)
+    private val fragments = listOf(NowPlayingFragment(), UpcomingFragment(), PopularFragment())
+    private val titleResources = listOf(R.string.nowPlaying, R.string.upcoming, R.string.popular)
 
     override fun getItem(position: Int) = fragments[position]
 
