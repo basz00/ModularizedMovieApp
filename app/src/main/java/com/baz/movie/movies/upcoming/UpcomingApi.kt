@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 internal interface UpcomingApi{
 
-    @GET("upcoming")
+    @GET("movie/upcoming")
     fun upcoming(@Query("page") page: Int): Call<MovieResponse>
 }

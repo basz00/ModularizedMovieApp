@@ -13,9 +13,11 @@ import com.baz.movie.BaseFragment
 import com.baz.movie.R
 import com.baz.movie.extensions.getViewModel
 import com.baz.movie.extensions.observe
-import com.baz.movie.movies.adapter.MoviesAdapter
+import com.baz.movie.movies.nowplaying.adapter.NowPlayingAdapter
 import com.baz.movie.movies.data.Movie
 import com.baz.movie.movies.data.MovieResult
+import com.baz.movie.movies.details.DetailsActivity
+import com.baz.movie.movies.popular.adapter.PopularAdapter
 import kotlinx.android.synthetic.main.fragment_popular.*
 import javax.inject.Inject
 
@@ -24,7 +26,7 @@ internal class PopularFragment : BaseFragment() {
     @Inject
     internal lateinit var factory: ViewModelProvider.Factory
 
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) { MoviesAdapter() }
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) { PopularAdapter(::startDetailsActivity) }
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel<PopularViewModel>(factory) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -74,5 +76,9 @@ internal class PopularFragment : BaseFragment() {
     private fun retrieveMovies(movies: List<Movie>) {
         viewModel.allowRetrieve()
         adapter.submitList(movies)
+    }
+
+    private fun startDetailsActivity(movieId: String) {
+        activity?.let { DetailsActivity.invoke(it, movieId) }
     }
 }

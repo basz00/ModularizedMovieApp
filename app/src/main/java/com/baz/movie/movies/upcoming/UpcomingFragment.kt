@@ -13,10 +13,12 @@ import com.baz.movie.BaseFragment
 import com.baz.movie.R
 import com.baz.movie.extensions.getViewModel
 import com.baz.movie.extensions.observe
-import com.baz.movie.movies.adapter.MoviesAdapter
 import com.baz.movie.movies.data.Movie
 import com.baz.movie.movies.data.MovieResult
+import com.baz.movie.movies.details.DetailsActivity
+import com.baz.movie.movies.upcoming.adapter.UpcomingAdapter
 import kotlinx.android.synthetic.main.fragment_upcoming.*
+import kotlin.LazyThreadSafetyMode.NONE
 import javax.inject.Inject
 
 internal class UpcomingFragment : BaseFragment() {
@@ -24,8 +26,8 @@ internal class UpcomingFragment : BaseFragment() {
     @Inject
     internal lateinit var factory: ViewModelProvider.Factory
 
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) { MoviesAdapter() }
-    private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel<UpcomingViewModel>(factory) }
+    private val adapter by lazy(NONE) { UpcomingAdapter(::startDetailsActivity) }
+    private val viewModel by lazy(NONE) { getViewModel<UpcomingViewModel>(factory) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -74,5 +76,9 @@ internal class UpcomingFragment : BaseFragment() {
     private fun retrieveMovies(movies: List<Movie>) {
         viewModel.allowRetrieve()
         adapter.submitList(movies)
+    }
+
+    private fun startDetailsActivity(movieId: String) {
+        activity?.let { DetailsActivity.invoke(it, movieId) }
     }
 }

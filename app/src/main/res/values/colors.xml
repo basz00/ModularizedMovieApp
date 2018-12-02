@@ -8,4 +8,5 @@
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="iron">#CCCCCC</color>
+    <color name="grey">#757575</color>
 </resources>

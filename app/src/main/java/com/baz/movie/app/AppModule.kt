@@ -40,7 +40,7 @@ class AppModule {
     @Singleton
     fun providesRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/movie/")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .client(client)
                 .addConverterFactory(MoshiConverterFactory.create().asLenient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

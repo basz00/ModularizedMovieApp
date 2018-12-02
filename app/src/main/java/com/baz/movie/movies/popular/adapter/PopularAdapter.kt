@@ -1,4 +1,4 @@
-package com.baz.movie.movies.adapter
+package com.baz.movie.movies.popular.adapter
 
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baz.movie.R
 import com.baz.movie.extensions.inflate
 import com.baz.movie.movies.data.Movie
-import com.baz.movie.movies.adapter.MoviesAdapter.ViewHolder
 import com.baz.movie.util.ImageLoader
 import com.baz.movie.util.ImageUrlHelper
 
-internal class MoviesAdapter : ListAdapter<Movie, ViewHolder>(Diff()) {
+internal class PopularAdapter(
+        private val callback: (String) -> Unit) : ListAdapter<Movie, PopularAdapter.ViewHolder>(Diff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.inflate(R.layout.movie_item_grid))
+        return ViewHolder(parent.inflate(R.layout.item_popular_movie))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -25,8 +25,9 @@ internal class MoviesAdapter : ListAdapter<Movie, ViewHolder>(Diff()) {
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val moviePosterImageView = view.findViewById<ImageView>(R.id.moviePosterImageView)
-        private val movieNameTextView = view.findViewById<TextView>(R.id.movieNameTextView)
+        private val moviePosterImageView = view.findViewById<ImageView>(R.id.popularMoviePosterImageView)
+        private val movieNameTextView = view.findViewById<TextView>(R.id.popularMovieNameTextView)
+        private val movieRatingTextView = view.findViewById<TextView>(R.id.popularMovieRatingTextView)
 
         fun bind(movie: Movie) {
             movie.posterPath?.let {
@@ -34,6 +35,10 @@ internal class MoviesAdapter : ListAdapter<Movie, ViewHolder>(Diff()) {
                 ImageLoader().loadImage(moviePosterImageView, posterPath)
             }
             movieNameTextView.text = movie.title
+            movieRatingTextView.text = "${movie.voteAverage}"
+            movieNameTextView.setOnClickListener { callback.invoke("${movie.id}") }
+            movieRatingTextView.setOnClickListener { callback.invoke("${movie.id}") }
+            moviePosterImageView.setOnClickListener { callback.invoke("${movie.id}") }
         }
     }
 

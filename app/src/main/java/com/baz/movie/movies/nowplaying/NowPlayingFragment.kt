@@ -15,7 +15,8 @@ import com.baz.movie.extensions.getViewModel
 import com.baz.movie.extensions.observe
 import com.baz.movie.movies.data.Movie
 import com.baz.movie.movies.data.MovieResult
-import com.baz.movie.movies.adapter.MoviesAdapter
+import com.baz.movie.movies.details.DetailsActivity
+import com.baz.movie.movies.nowplaying.adapter.NowPlayingAdapter
 import kotlinx.android.synthetic.main.fragment_now_playing.*
 import javax.inject.Inject
 
@@ -24,7 +25,7 @@ internal class NowPlayingFragment : BaseFragment() {
     @Inject
     internal lateinit var factory: ViewModelProvider.Factory
 
-    private val adapter by lazy(NONE) { MoviesAdapter() }
+    private val adapter by lazy(NONE) { NowPlayingAdapter(::startDetailsActivity) }
     private val viewModel by lazy(NONE) { getViewModel<NowPlayingViewModel>(factory) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -74,5 +75,9 @@ internal class NowPlayingFragment : BaseFragment() {
     private fun retrieveMovies(movies: List<Movie>) {
         viewModel.allowRetrieve()
         adapter.submitList(movies)
+    }
+
+    private fun startDetailsActivity(movieId: String) {
+        activity?.let { DetailsActivity.invoke(it, movieId) }
     }
 }

@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 internal interface PopularApi{
 
-    @GET("popular")
+    @GET("movie/popular")
     fun popular(@Query("page") page: Int): Call<MovieResponse>
 }

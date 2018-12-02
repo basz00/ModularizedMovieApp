@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 internal interface NowPlayingApi {
 
-    @GET("now_playing")
+    @GET("movie/now_playing")
     fun nowPlaying(@Query("page") page: Int): Call<MovieResponse>
 }

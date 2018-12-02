@@ -1,6 +1,7 @@
 package com.baz.movie.app
 
 import com.baz.movie.main.MainBuilderModule
+import com.baz.movie.movies.details.module.DetailsBuilderModule
 import com.baz.movie.movies.nowplaying.module.NowPlayingBuilderModule
 import com.baz.movie.movies.popular.module.PopularBuilderModule
 import com.baz.movie.movies.upcoming.module.UpcomingBuilderModule
@@ -19,7 +20,8 @@ import javax.inject.Singleton
     MainBuilderModule::class,
     NowPlayingBuilderModule::class,
     UpcomingBuilderModule::class,
-    PopularBuilderModule::class])
+    PopularBuilderModule::class,
+    DetailsBuilderModule::class])
 internal interface AppComponent : AndroidInjector<Application> {
 
     @Component.Builder
