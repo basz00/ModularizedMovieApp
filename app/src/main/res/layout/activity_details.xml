@@ -46,16 +46,29 @@
             android:layout_height="match_parent"
             android:paddingBottom="60dp">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailsReleaseRatingCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/detailsRatingMarginView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/detailsReleaseDateTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/detailsReleaseRatingCardView"
                 tools:layout_editor_absoluteY="16dp"
                 tools:text="Release date : 2 May 2018" />
 
@@ -63,58 +76,100 @@
                 android:id="@+id/detailsRatingTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailsReleaseDateTextView"
                 tools:text="Rating : 5" />
 
+            <View
+                android:id="@+id/detailsRatingMarginView"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/detailsRatingTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailsOverviewCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/detailsRatingMarginView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/detailsOverviewMarginView"
+                app:cardElevation="0dp"/>
+
             <TextView
                 android:id="@+id/detailsOverviewTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailsRatingTextView"
+                app:layout_constraintTop_toTopOf="@id/detailsOverviewCardView"
                 tools:text="Overview" />
 
             <TextView
                 android:id="@+id/detailsOverviewTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailsOverviewTitleTextView"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mi turpis, sagittis eget sodales id, luctus at massa. Etiam pretium molestie bibendum. Etiam placerat at urna vestibulum cursus. Fusce finibus eros nec tempus egestas. Donec ac risus dolor. Mauris a velit ipsum. Cras ut auctor arcu. Nullam in malesuada urna, a commodo erat. Vivamus faucibus lectus vitae mi hendrerit venenatis. Integer auctor mattis nisi, sed consequat enim. Vivamus lobortis metus at eros dapibus, in placerat sem vehicula. Praesent commodo elementum velit, id mollis nisl efficitur non. Maecenas auctor, nulla vitae commodo efficitur, felis leo fermentum dolor, eu fringilla nisl enim vitae neque. Etiam molestie risus sapien, at mollis est rhoncus non." />
 
+            <View
+                android:id="@+id/detailsOverviewMarginView"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/detailsOverviewTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailsCastsCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailsOverviewMarginView"
+                app:layout_constraintBottom_toBottomOf="@+id/detailsCastsMarginView"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardElevation="0dp"/>
+
             <TextView
                 android:id="@+id/detailsCastsTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailsOverviewTextView"
+                app:layout_constraintTop_toTopOf="@+id/detailsCastsCardView"
                 tools:text="Cast" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/detailsCastsRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailsCastsTitleTextView"
@@ -123,25 +178,46 @@
                 tools:orientation="horizontal"
                 tools:scrollbars="horizontal" />
 
+            <View
+                android:id="@+id/detailsCastsMarginView"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/detailsCastsRecyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailsTrailerCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/detailsCastsMarginView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/detailsTrailerMarginView"/>
+
             <TextView
                 android:id="@+id/detailsTrailerTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailsCastsRecyclerView"
+                app:layout_constraintTop_toTopOf="@id/detailsTrailerCardView"
                 tools:text="Trailer" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/detailsTrailerRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +226,14 @@
                 tools:listitem="@layout/item_now_playing_movie"
                 tools:orientation="horizontal"
                 tools:scrollbars="horizontal" />
+
+            <View
+                android:id="@+id/detailsTrailerMarginView"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/detailsTrailerRecyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
