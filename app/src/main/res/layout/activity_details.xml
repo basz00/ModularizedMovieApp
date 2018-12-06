@@ -17,10 +17,11 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            tools:title="Avengers:EndGame">
 
             <ImageView
-                android:id="@+id/detailsPosterImageView"
+                android:id="@+id/detailsBannerImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -31,8 +32,9 @@
                 android:id="@+id/detailsToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:title="Avengers Infinity War" />
+                android:gravity="bottom"
+                app:titleTextColor="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -116,7 +118,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/detailsOverviewCardView"
-                tools:text="Overview" />
+                android:text="@string/overview" />
 
             <TextView
                 android:id="@+id/detailsOverviewTextView"
@@ -161,7 +163,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/detailsCastsCardView"
-                tools:text="Cast" />
+                android:text="@string/casts"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/detailsCastsRecyclerView"
@@ -187,7 +189,7 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/detailsTrailerCardView"
+                android:id="@+id/detailsTrailersCardView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
@@ -197,10 +199,10 @@
                 app:layout_constraintTop_toBottomOf="@id/detailsCastsMarginView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/detailsTrailerMarginView"/>
+                app:layout_constraintBottom_toBottomOf="@id/detailsTrailersMarginView"/>
 
             <TextView
-                android:id="@+id/detailsTrailerTitleTextView"
+                android:id="@+id/detailsTrailersTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -208,11 +210,11 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/detailsTrailerCardView"
-                tools:text="Trailer" />
+                app:layout_constraintTop_toTopOf="@id/detailsTrailersCardView"
+                android:text="@string/trailers"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/detailsTrailerRecyclerView"
+                android:id="@+id/detailsTrailersRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -221,17 +223,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailsTrailerTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/detailsTrailersTitleTextView"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/item_now_playing_movie"
                 tools:orientation="horizontal"
                 tools:scrollbars="horizontal" />
 
             <View
-                android:id="@+id/detailsTrailerMarginView"
+                android:id="@+id/detailsTrailersMarginView"
                 android:layout_width="0dp"
                 android:layout_height="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/detailsTrailerRecyclerView"
+                app:layout_constraintTop_toBottomOf="@+id/detailsTrailersRecyclerView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

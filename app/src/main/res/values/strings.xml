@@ -3,4 +3,9 @@
     <string name="nowPlaying">Now Playing</string>
     <string name="upcoming">Upcoming</string>
     <string name="popular">Popular</string>
+    <string name="releaseDate">Release date : %s</string>
+    <string name="rating">Rating : %s</string>
+    <string name="overview">Overview</string>
+    <string name="casts">Casts</string>
+    <string name="trailers">Trailers</string>
 </resources>
