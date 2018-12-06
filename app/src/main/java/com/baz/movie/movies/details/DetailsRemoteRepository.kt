@@ -10,7 +10,7 @@ internal class DetailsRemoteRepository @Inject constructor(
         private val api: DetailsApi) : DetailsRepository {
 
     private val detailsResultLiveData = MutableLiveData<DetailsResult>()
-    private val videosResultLiveData = MutableLiveData<VideosResult>()
+    private val trailersResultLiveData = MutableLiveData<TrailersResult>()
     private val creditsResultLiveData = MutableLiveData<CreditsResult>()
 
     override fun getDetails(movieId: String): LiveData<DetailsResult> {
@@ -19,10 +19,10 @@ internal class DetailsRemoteRepository @Inject constructor(
         return detailsResultLiveData
     }
 
-    override fun getVideos(movieId: String): LiveData<VideosResult> {
-        videosResultLiveData.value = VideosResult.Progress(true)
-        api.getVideos(movieId).enqueue(retrofitCallback(::onVideosSuccess, ::onVideosError))
-        return videosResultLiveData
+    override fun getTrailers(movieId: String): LiveData<TrailersResult> {
+        trailersResultLiveData.value = TrailersResult.Progress(true)
+        api.getVideos(movieId).enqueue(retrofitCallback(::onTrailersSuccess, ::onTrailersError))
+        return trailersResultLiveData
     }
 
     override fun getCredits(movieId: String): LiveData<CreditsResult> {
@@ -43,16 +43,19 @@ internal class DetailsRemoteRepository @Inject constructor(
         detailsResultLiveData.value = DetailsResult.Failed(error)
     }
 
-    private fun onVideosSuccess(videosResponse: VideosResponse?) {
-        videosResultLiveData.value = VideosResult.Progress(false)
-        videosResponse?.let {
-            videosResultLiveData.value = VideosResult.Success(it)
+    private fun onTrailersSuccess(videosResponse: VideosResponse?) {
+        trailersResultLiveData.value = TrailersResult.Progress(false)
+        videosResponse?.let { it ->
+            val trailers = it.results.map {
+                YoutubeTrailer(it.id, it.key, it.name)
+            }
+            trailersResultLiveData.value = TrailersResult.Success(trailers)
         }
     }
 
-    private fun onVideosError(error: String) {
-        videosResultLiveData.value = VideosResult.Progress(false)
-        videosResultLiveData.value = VideosResult.Failed(error)
+    private fun onTrailersError(error: String) {
+        trailersResultLiveData.value = TrailersResult.Progress(false)
+        trailersResultLiveData.value = TrailersResult.Failed(error)
     }
 
     private fun onCreditsSuccess(creditsResponse: CreditsResponse?) {

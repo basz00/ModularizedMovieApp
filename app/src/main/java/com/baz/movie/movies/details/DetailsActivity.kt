@@ -4,16 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.baz.movie.BaseActivity
 import com.baz.movie.R
 import com.baz.movie.extensions.getViewModel
 import com.baz.movie.extensions.observe
 import com.baz.movie.movies.data.*
+import com.baz.movie.movies.details.adapter.CastsAdapter
 import com.baz.movie.util.ImageLoader
 import com.baz.movie.util.ImageUrlHelper
 import kotlinx.android.synthetic.main.activity_details.*
 import javax.inject.Inject
 import kotlin.LazyThreadSafetyMode.NONE
+import androidx.recyclerview.widget.GridLayoutManager.HORIZONTAL
+import com.baz.movie.movies.details.adapter.TrailersAdapter
 
 internal class DetailsActivity : BaseActivity() {
 
@@ -34,12 +38,26 @@ internal class DetailsActivity : BaseActivity() {
 
     private val viewModel by lazy(NONE) { getViewModel<DetailsViewModel>(factory) }
     private val movieId by lazy(NONE) { intent.getStringExtra(EXTRA_MOVIE_ID) }
+    private val castsAdapter by lazy(NONE) { CastsAdapter() }
+    private val trailersAdapter by lazy(NONE) { TrailersAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         observeViewModel()
+        initViews()
         viewModel.getMovieDetails(movieId)
+    }
+
+    private fun initViews() {
+        detailsCastsRecyclerView.layoutManager = GridLayoutManager(this, 1,
+                HORIZONTAL, false)
+        detailsCastsRecyclerView.setHasFixedSize(true)
+        detailsCastsRecyclerView.adapter = castsAdapter
+        detailsTrailersRecyclerView.layoutManager = GridLayoutManager(this, 1,
+                HORIZONTAL, false)
+        detailsTrailersRecyclerView.setHasFixedSize(true)
+        detailsTrailersRecyclerView.adapter = trailersAdapter
     }
 
     private fun observeViewModel() {
@@ -59,11 +77,11 @@ internal class DetailsActivity : BaseActivity() {
     }
 
     private fun observeVideos() {
-        viewModel.videosResultLiveData.observe(this) {
+        viewModel.trailersResultLiveData.observe(this) {
             when (it) {
-                is VideosResult.Success -> onVideosSuccess(it.videos)
-                is VideosResult.Progress -> onVideosProgress(it.loading)
-                is VideosResult.Failed -> onVideosFailed(it.error)
+                is TrailersResult.Success -> onTrailersSuccess(it.trailers)
+                is TrailersResult.Progress -> onTrailersProgress(it.loading)
+                is TrailersResult.Failed -> onTrailersFailed(it.error)
             }
         }
     }
@@ -95,20 +113,20 @@ internal class DetailsActivity : BaseActivity() {
 
     }
 
-    private fun onVideosSuccess(videosResponse: VideosResponse) {
+    private fun onTrailersSuccess(trailers: List<YoutubeTrailer>) {
+        trailersAdapter.submitList(trailers)
+    }
+
+    private fun onTrailersProgress(isLoading: Boolean) {
 
     }
 
-    private fun onVideosProgress(isLoading: Boolean) {
-
-    }
-
-    private fun onVideosFailed(error: String) {
+    private fun onTrailersFailed(error: String) {
 
     }
 
     private fun onCreditsSuccess(creditsResponse: CreditsResponse) {
-
+        castsAdapter.submitList(creditsResponse.cast)
     }
 
     private fun onCreditsProgress(isLoading: Boolean) {

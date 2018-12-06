@@ -10,14 +10,14 @@ internal class DetailsViewModel @Inject constructor(
         private val repository: DetailsRepository) : ViewModel() {
 
     private val detailsInputLiveData = MutableLiveData<String>()
-    private val videosInputLiveData = MutableLiveData<String>()
+    private val trailersInputLiveData = MutableLiveData<String>()
     private val creditsInputLiveData = MutableLiveData<String>()
 
     internal val detailsResultLiveData by lazy(NONE) {
         Transformations.switchMap(detailsInputLiveData, repository::getDetails)
     }
-    internal val videosResultLiveData by lazy(NONE) {
-        Transformations.switchMap(videosInputLiveData, repository::getVideos)
+    internal val trailersResultLiveData by lazy(NONE) {
+        Transformations.switchMap(trailersInputLiveData, repository::getTrailers)
     }
     internal val creditsResultLiveData by lazy(NONE) {
         Transformations.switchMap(creditsInputLiveData, repository::getCredits)
@@ -25,7 +25,7 @@ internal class DetailsViewModel @Inject constructor(
 
     fun getMovieDetails(movieId: String) {
         detailsInputLiveData.value = movieId
-        videosInputLiveData.value = movieId
+        trailersInputLiveData.value = movieId
         creditsInputLiveData.value = movieId
     }
 }
